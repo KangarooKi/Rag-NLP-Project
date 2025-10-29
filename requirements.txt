@@ -1,0 +1,19 @@
+# 核心功能依赖
+langchain==0.1.16            # 构建RAG流程的核心框架
+langchain-community==0.0.34  # 社区贡献的工具和集成
+langchain-core==0.1.43       # LangChain核心组件
+chromadb==0.4.24             # 向量数据库
+neo4j==5.18.1                # 知识图谱数据库驱动
+gradio==3.50.2               # 构建Web交互界面
+torch==2.1.2                 # 深度学习框架（Embedding模型依赖）
+modelscope==1.9.5            # 模型下载工具（用于获取Embedding模型）
+transformers==4.36.2         # 处理HuggingFace模型
+sentence-transformers==2.2.2 # 辅助Embedding处理
+
+# 文档处理依赖
+PyPDF2==3.0.1                # PDF文档加载
+python-multipart==0.0.9      # 表单数据处理（Gradio可能用到）
+
+# 其他工具
+python-dotenv==1.0.0         # 环境变量管理（可选，用于管理API密钥）
+numpy==1.26.3                # 数值计算支持
