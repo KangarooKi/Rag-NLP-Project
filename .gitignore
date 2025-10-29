@@ -1,0 +1,21 @@
+# Python 相关
+__pycache__/          # 编译后的缓存文件
+*.py[cod]             # 编译后的字节码文件
+*$py.class            # 同上
+venv/                 # 虚拟环境（如果用了 venv 创建）
+env/                  # 虚拟环境（如果用了 conda 创建）
+
+# 项目数据（可选，若数据太大可不传）
+data/embedding_model/ # 嵌入模型（体积大，可本地保留）
+data/nlp_rag_db/      # 向量数据库（可本地保留）
+
+# 系统和编辑器文件
+Thumbs.db             # Windows 缩略图缓存
+.vscode/              # VS Code 配置（如果用 VS Code）
+.idea/                # PyCharm 配置（如果用 PyCharm）
+.DS_Store             # Mac 系统文件（忽略即可）
+
+# 个人配置
+.gitconfig            # Git 配置（本地保留即可）
+.condarc              # Conda 配置（本地保留即可）
+.cache/               # 缓存文件
