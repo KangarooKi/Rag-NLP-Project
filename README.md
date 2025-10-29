@@ -1,3 +1,133 @@
+# En
+
+# NLP Course Q&A System (Based on RAG Technology)
+
+An intelligent Q&A assistant for Natural Language Processing (NLP) courses, built on **Retrieval-Augmented Generation (RAG)** technology.  
+It supports both **Baseline RAG** and **Knowledge Graph Enhanced GraphRAG** modes, helping students efficiently access course-related knowledge.
+
+---
+
+## Core Features
+
+- **Baseline RAG QA**: Retrieves relevant text chunks from a vector database and generates precise answers with a large language model.  
+- **GraphRAG QA**: Utilizes a knowledge graph to capture conceptual relationships and produce deeper, more connected responses.  
+- **Automatic Knowledge Graph Construction**: Extracts entities and relationships from course materials to build an NLP domain knowledge network.  
+- **Web-based Interface**: Provides an intuitive and visual interface via Gradio, supporting dialogue history tracking.
+
+---
+
+## System Architecture
+
+### Retrieval Layer
+- **Text Chunking**: Uses `RecursiveCharacterTextSplitter` for adaptive text segmentation (chunk size 200, overlap 50).  
+- **Vector Storage**: Employs **Chroma** as the vector database to store text embeddings.  
+- **Embedding Model**: Uses `intfloat/e5-base-v2` to generate text embeddings.  
+
+### Generation Layer
+- **Language Model**: Integrates Zhipu AI’s `glm-4-flashx` model.  
+- **Prompt Engineering**: Optimized prompt templates designed for course-related Q&A scenarios.  
+
+### Knowledge Graph Layer
+- **Entity and Relation Extraction**: Identifies NLP domain entities (concepts, models, tools, etc.) from text.  
+- **Storage Engine**: Utilizes **Neo4j** as the graph database to store entities and relationships.  
+- **Relation Types**: Supports multiple relation types such as `DependsOn`, `IsA`, `UsedFor`, `ProposedBy`, and `Contains`.  
+
+### Interaction Layer
+- **Web Interface**: Built with **Gradio** for interactive usage.  
+- **Mode Switching**: Supports multi-tab interface for Baseline RAG and GraphRAG modes.  
+
+---
+
+## How to Run
+
+### 1. Environment Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/KangarooKi/Rag-NLP-Project.git
+cd Rag-NLP-Project
+```
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 2. Configuration
+
+Modify the `config.py` file:
+
+- Set the data storage path `DATA_PATH` (English path is recommended).  
+- Add your Zhipu AI API key as `LLM_API_KEY` (obtain it from Zhipu AI Open Platform).  
+- Configure the Neo4j database connection (Neo4j installation required).  
+
+### 3. Prepare Course Materials
+
+Place your course lecture notes or slides in **PDF** or **TXT** format inside the `DATA_PATH` directory.
+
+### 4. Run the System
+
+```bash
+python app.py
+```
+
+Once started, open the displayed local address (default: [http://localhost:7860/](http://localhost:7860/)) to access the NLP Course Q&A web interface.  
+You can also explore the generated **knowledge graph** in Neo4j.  
+For detailed setup and visualization steps, see:  
+[https://blog.csdn.net/qq_60492174/article/details/144369861](https://blog.csdn.net/qq_60492174/article/details/144369861)
+
+> Note: The first time you use GraphRAG mode, click **“Build Knowledge Graph”**. This process may take several minutes depending on material size.
+
+---
+
+## Project Structure
+
+```plaintext
+Rag-NLP-Project/
+├── app.py               # Gradio web interface
+├── config.py            # Configuration (paths, API keys, parameters)
+├── nlp_rag_core.py      # Core RAG logic implementation
+├── requirements.txt     # Dependency list
+├── data/                # Data directory (create manually)
+│   ├── course_materials.pdf/txt  # Input course documents
+│   ├── embedding_model/          # Downloaded embedding model
+│   └── nlp_rag_db/               # Vector database (auto-generated)
+└── .gitignore           # Git ignore rules
+```
+
+---
+
+## Notes
+
+- Embedding models and vector databases are large and are excluded via `.gitignore`. They will be generated locally.  
+- Building the knowledge graph for the first time may take a long time but does not need to be repeated later.  
+- Use environment variables (e.g., with `python-dotenv`) to manage sensitive data such as API keys and database passwords.  
+- To change the language model, modify the `_load_llm` method in `nlp_rag_core.py`.  
+
+---
+
+## Future Improvements
+
+- Support additional document formats (Markdown, PPT, etc.)  
+- Enable model selection for multiple LLM backends  
+- Improve entity linking and relationship extraction accuracy  
+- Add a feedback and evaluation mechanism for Q&A quality  
+- Implement incremental updates and reindexing for new materials  
+- Improve knowledge graph construction efficiency and expand corpus coverage  
+
+---
+
+## Acknowledgements
+
+This project draws inspiration from Microsoft’s **GraphRAG** framework.  
+Special thanks to **Zhipu AI** for providing language model support and to all contributors involved in the course project.
+
+
+
+
+
+# Zh
+---
 # NLP课程答疑系统（基于RAG技术）
 
 一个基于**检索增强生成（RAG）**技术的自然语言处理课程答疑智能体，支持**基线RAG**和**知识图谱增强的GraphRAG**两种问答模式，帮助学生快速获取课程相关知识点。
@@ -91,7 +221,7 @@ Rag-NLP-Project/
 
 ---
 
-## ⚠️ 注意事项
+##  注意事项
 
 - 嵌入模型和向量数据库体积较大，已通过 `.gitignore` 排除，需本地生成。  
 - 知识图谱构建首次运行耗时较长，后续无需重复构建。  
